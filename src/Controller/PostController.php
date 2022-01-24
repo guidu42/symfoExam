@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Thread;
+use App\Entity\User;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Repository\ThreadRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
+
+    private User $user;
+
     public function __construct(
         Private PostRepository $postRepository,
         Private ThreadRepository $threadRepository,
-        Private EntityManagerInterface $em
+        Private EntityManagerInterface $em,
+        Private UserRepository $userRepository
     ){}
 
     #[Route('/thread/{subject}/create', name: 'createPost')]
@@ -48,6 +54,9 @@ class PostController extends AbstractController
     public function edit(Request $request, string $subject, string $id): Response
     {
         $post = $this->postRepository->find($id);
+        if($this->getUser() != $post->getUser()){
+            return $this->redirectToRoute('home');
+        }
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -68,6 +77,9 @@ class PostController extends AbstractController
     public function delete(Request $request, string $subject, string $id): Response
     {
         $post = $this->postRepository->find($id);
+        if($this->getUser() != $post->getUser()){
+            return $this->redirectToRoute('home');
+        }
         $this->em->remove($post);
         $this->em->flush();
 

@@ -43,6 +43,9 @@ class UserController extends AbstractController
     public function edit(string $nickName, Request $request):Response
     {
         $user = $this->userRepository->findOneBy(['nickName' => $nickName]);
+        if(!($this->getUser() == $user)){
+            return $this->redirectToRoute('home');
+        }
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -58,10 +59,12 @@ class PostRepository extends ServiceEntityRepository
             ->orderBy('p.createdAt', 'DESC');
     }
 
-    public function findFullByUser(?\App\Entity\User $user)
+    public function findFullByUser(?User $user)
     {
         return $this->createQueryBuilder('p')
             ->select('p')
-            ->orderBy("p.createdAt", 'DESC');
+            ->orderBy("p.createdAt", 'DESC')
+            ->where('p.user = :user')
+            ->setParameter('user', $user);
     }
 }
