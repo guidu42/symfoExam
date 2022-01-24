@@ -23,7 +23,7 @@ pages:
 
 partials:
   thread_card:
-    creationInfos: "Créé par <a href='%path%' class='text-decoration-none userName text-uppercase fw-bold'>%user%</a> le %date% à %heure%"
+    creationInfos: "Créé par <span class='text-decoration-none userName text-uppercase fw-bold'>%user%</span> le %date% à %heure%"
     nbPostes: '%X% Postes'
   header:
     brand: "ForumGui"
@@ -32,6 +32,8 @@ partials:
       profile: "Profil"
       deconnexion: "Deconnection"
       connexion: "Connection"
+  post_card:
+    creationInfos: "Créé par <a href='%path%' class='text-decoration-none userName text-uppercase fw-bold'>%user%</a> le %date% à %heure%"
 
 common:
   link:

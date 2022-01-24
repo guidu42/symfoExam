@@ -4,8 +4,9 @@
         <div>
             {{ 'partials.thread_card.creationInfos'|trans({
                 '%user%': thread.user.nickName,
-                '%date%': thread.createdAt|date('d-m-Y')
-            }) }}
+                '%date%': thread.createdAt|date('d-m-Y'),
+                '%heure%': thread.createdAt|date('H:i:s')
+            })|raw }}
         </div>
         <div>
             {{ 'partials.thread_card.nbPostes'|trans({'%X%': thread.posts|length}) }}
