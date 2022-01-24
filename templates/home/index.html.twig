@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container my-2">
+        <div class="row gy-3">
+            <div class="col-12">
+                <h1>{{ 'pages.home.index.h1'|trans }}</h1>
+            </div>
+            <div class="col-12">
+                <a class="btn btn-outline-primary" href="{{ path('createCategory') }}">{{ "common.link.createEntity"|trans({'%entity%': 'catégorie'}) }}</a>
+            </div>
+            <div class="col-12">
+                <div class="row gy-2">
+                    {% for category in categories %}
+                        <div class="col-12">
+                            {% include 'partials/_category_card.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

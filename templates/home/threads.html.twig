@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container my-2">
+        <div class="row gy-3">
+            <div class="col-12">
+                <h1>{{ 'pages.home.threads.h1'|trans({'%subCateg%': subCateg.name}) }}</h1>
+            </div>
+            <div class="col-12">
+                <a class="btn btn-outline-primary" href="{{ path('createThread', {'subCategId': subCateg.id}) }}">{{ "common.link.createEntity"|trans({'%entity%': 'thread'}) }}</a>
+            </div>
+            <div class="col-12">
+                <div class="row gy-2">
+                    {% for thread in threads %}
+                        <div class="col-12">
+                            {% include 'partials/_thread_card.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

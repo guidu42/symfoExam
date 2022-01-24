@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container my-2">
+        <div class="row gy-3">
+            <div class="col-12">
+                <h1>{{ 'pages.home.posts.h1'|trans({'%thread%': thread.subject}) }}</h1>
+            </div>
+            {% if app.user is not null %}
+                <div class="col-12">
+                    <a class="btn btn-outline-primary" href="{{ path('createPost', {'subject': thread.subject}) }}">Ajouter un Post</a>
+                </div>
+            {% endif %}
+            <div class="col-12">
+                <div class="row gy-2">
+                    {% for post in paginator %}
+                        <div class="col-12">
+                            {% include 'partials/_post_card.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="pagination my-2 col-12 text-dark d-flex justify-content-center">
+                {{ knp_pagination_render(paginator) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ 'pages.home.posts.title'|trans }}
+{% endblock %}
+

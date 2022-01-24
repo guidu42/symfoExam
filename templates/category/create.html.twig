@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'entity.category.form.h1'|trans }}</h1>
+            </div>
+            <div class="col-12">
+                {% include "forms/index.html.twig" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

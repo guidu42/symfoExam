@@ -1,0 +1,17 @@
+<div class="category-card border border-3 border-dark">
+    <h2 class="text-uppercase ms-2">{{ category.name }}</h2>
+    <div class="row my-2">
+        <div class="col-10 offset-1">
+            <ul class="list-group">
+                {% for subCategory in category.subCategories %}
+                    <li class="list-unstyled mb-1"><a class="list-group-item border border-1 border-success text-success" href="{{ path('threads', {'name': subCategory.name}) }}">{{ subCategory.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12 text-end">
+            <a href="{{ path('createSubCategory') }}" class="btn btn-outline-primary me-2">{{ 'common.link.createEntity'|trans({'%entity%': 'Sous-Catégorie'}) }}</a>
+        </div>
+    </div>
+</div>

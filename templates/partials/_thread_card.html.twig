@@ -1,0 +1,14 @@
+<a href="{{ path('posts', {'subject': thread.subject}) }}" class="p-3 rounded-3 thread-card bg-dark text-light border border-3 border-secondary d-block text-decoration-none">
+    <h2 class="mb-2">{{ thread.subject }}</h2>
+    <div class="d-flex justify-content-between">
+        <div>
+            {{ 'partials.thread_card.creationInfos'|trans({
+                '%user%': thread.user.nickName,
+                '%date%': thread.createdAt|date('d-m-Y')
+            }) }}
+        </div>
+        <div>
+            {{ 'partials.thread_card.nbPostes'|trans({'%X%': thread.posts|length}) }}
+        </div>
+    </div>
+</a>

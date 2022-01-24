@@ -1,0 +1,79 @@
+pages:
+  user:
+    index:
+      title: "Profil de %user%"
+    edit:
+      title: "Edit du profil de %user%"
+  register:
+    title: "Page d'inscription"
+    h1: "Créer votre compte"
+  login:
+    title: "Page de connexion"
+    h1: "Connectez vous"
+  home:
+    index:
+      title: "Page d'accueil de FormGui"
+      h1: "Toutes les catégories et sous-catégories"
+    threads:
+      title: "Page de threads"
+      h1: "Tous les threads pour la sous-catégorie %subCateg%"
+    posts:
+      title: "Page de posts"
+      h1: "Tous les posts pour le thread %thread%"
+
+partials:
+  thread_card:
+    creationInfos: "Créé par <a href='%path%' class='text-decoration-none userName text-uppercase fw-bold'>%user%</a> le %date% à %heure%"
+    nbPostes: '%X% Postes'
+  header:
+    brand: "ForumGui"
+    home: 'Accueil'
+    user:
+      profile: "Profil"
+      deconnexion: "Deconnection"
+      connexion: "Connection"
+
+common:
+  link:
+    createEntity: "Créer %entity%"
+    submit: 'Valider'
+    connexion: "Se connecter"
+    register: "S'inscrire"
+    modify: "Modifier"
+
+entity:
+  user:
+    email: "Email"
+    password: "Mot de passe"
+    nickName: "Pseudo"
+    birthDate: "Date de naissance"
+    firstName: "Prénom"
+    lastName: "Nom"
+    form:
+      h1: "Modifier mon Profil"
+
+  category:
+    name: "Nom"
+    description: "Description"
+    form:
+      h1: "Formulaire de création d'un catégorie"
+
+  subCategory:
+    name: "Nom"
+    description: "Description"
+    category: 'Catégorie'
+    form:
+      h1: "Formulaire de création d'une sous-catégorie"
+
+  thread:
+    subject: "Sujet"
+    form:
+      h1: "Créer un nouveau thread"
+      title: "Page de création d'un nouveau thread"
+
+  post:
+    form:
+      h1: 'Créer un nouveau post pour le thread %thread%'
+      label: 'Message'
+      edit:
+        h1: 'Modifier votre post pour le thread %thread%'

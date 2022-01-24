@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'pages.user.index.title'|trans({'%user%': user.nickName}) }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row my-2">
+        <div class="col-8 offset-2 border border-1 border-dark rounded-2">
+            <h1 class="text-center mb-5">{{ 'pages.user.index.title'|trans({'%user%': user.nickName}) }}</h1>
+            <div class="row gy-4 mb-3 justify-content-center">
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <div><span class="text-decoration-underline me-2">{{ 'entity.user.firstName'|trans }}</span>{{ user.firstName }}</div>
+                    <div><span class="text-decoration-underline me-2">{{ 'entity.user.lastName'|trans }}</span>{{ user.lastName }}</div>
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <div><span class="text-decoration-underline me-2">{{ 'entity.user.email'|trans }}</span>{{ user.email }}</div>
+                    <div><span class="text-decoration-underline me-2">{{ 'entity.user.birthDate'|trans }}</span>{{ user.birthDate|date('d-m-Y') }}</div>
+                </div>
+                <div class="col-12">
+                    {% if ownUserProfil == true %}
+                        <a class="btn btn-outline-primary" href="{{ path('user_edit', {'nickName': user.nickName}) }}">{{ 'common.link.modify'|trans }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gy-2">
+        {% for post in paginator %}
+            <div class="col-12">
+                {% include 'partials/_post_card.html.twig' with {'postCardInUserProfil': true} %}
+            </div>
+        {% endfor %}
+        <div class="pagination my-2 col-12 text-dark d-flex justify-content-center">
+            {{ knp_pagination_render(paginator) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

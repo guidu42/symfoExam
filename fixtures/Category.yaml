@@ -1,0 +1,3 @@
+App\Entity\Category:
+  name: 'Divers'
+  description: 'Bienvennue dans la catégorie principale du site qui répertorie tout ce qui sort des autres catégories'

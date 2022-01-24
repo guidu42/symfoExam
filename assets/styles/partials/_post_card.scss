@@ -1,0 +1,22 @@
+.post-card{
+  .edit{
+    i{
+      &:hover{
+        color: darkgreen !important;
+      }
+    }
+    .delete{
+      i{
+        &:hover{
+          color: red !important;
+        }
+      }
+    }
+  }
+  .userName{
+    color: white;
+    &:hover{
+      color: darkgreen;
+    }
+  }
+}

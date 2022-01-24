@@ -1,0 +1,32 @@
+<div class="post-card p-3 rounded-3 thread-card bg-dark text-light border border-3 border-secondary d-block text-decoration-none">
+    {% if postCardInUserProfil is defined %}
+        <a href="{{ path('posts', {"subject": post.thread.subject}) }}" class="mb-3 d-block text-decoration-underline fw-bolder text-info">{{ post.thread.subject }}</a>
+    {% endif %}
+    <p class="mb-3">Contenu: {{ post.content }}</p>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="me-2">
+                {{ 'partials.thread_card.creationInfos'|trans({
+                    '%user%': post.user.nickName,
+                    '%date%': post.createdAt|date('d-m-Y'),
+                    '%heure%': post.createdAt|date('H:i:s'),
+                    '%path%': path('user', {'nickName': post.user.nickName})
+                })|raw }}
+            </div>
+        </div>
+        {% if app.user == post.user %}
+            <div class="edit d-flex align-items-center">
+                <a href="{{ path('editPost', {'subject': post.thread.subject, 'id': post.id}) }}"><i class="fas fa-pencil-alt text-light me-4"></i></a>
+                <a class="delete" href="{{ path('post_delete', {'subject': post.thread.subject, 'id': post.id}) }}"><i class="fas fa-times text-light"></i></a>
+            </div>
+        {% endif %}
+        <div class="d-flex flex-row">
+           <a {% if app.user is not null %}href="{{ path('post_add_upVote', {'id': post.id, 'subject': post.thread.subject}) }}"{% else%}href="{{ path('app_register') }}"{% endif%} class="btn upVote me-2">
+                <div class="text-success"><span class="me-2">{{ post.upVote }}</span><i class="fas fa-thumbs-up"></i></div>
+           </a>
+            <a {% if app.user is not null %}href="{{ path('post_add_downVote', {'id': post.id, 'subject': post.thread.subject}) }}"{% else%}href="{{ path('app_register') }}"{% endif%} class="btn downVote me-2">
+                <div class="text-danger"><span class="me-2">{{ post.downVote }}</span><i class="fas fa-thumbs-down"></i></div>
+            </a>
+        </div>
+    </div>
+</div>

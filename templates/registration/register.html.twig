@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'pages.home.posts.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6 offset-3 border border-2 border-dark rounded-2">
+                <h1>{{ 'pages.register.h1'|trans }}</h1>
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.nickName) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+
+                <div class="btn-group mb-2 w-100">
+                    <button type="submit" class="btn btn-outline-primary">{{ 'common.link.submit'|trans }}</button>
+                    <a class="btn btn-success" href="{{ path('app_login') }}">{{ 'common.link.connexion'|trans }}</a>
+                </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

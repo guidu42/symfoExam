@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'entity.thread.form.h1'|trans }}</h1>
+            </div>
+            <div class="col-12">
+                {% include "forms/index.html.twig" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+{{ 'entity.thread.form.title'|trans }}
+{% endblock %}
+
