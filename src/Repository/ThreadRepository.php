@@ -66,7 +66,7 @@ class ThreadRepository extends ServiceEntityRepository
             ->select('t', 'u', 'subCategory', 'posts')
             ->join('t.user', 'u')
             ->join('t.subCategory', 'subCategory')
-            ->join('t.posts', 'posts')
+            ->leftJoin('t.posts', 'posts')
             ->where('subCategory = :subCateg')
             ->setParameter('subCateg', $subCateg)
             ->getQuery()

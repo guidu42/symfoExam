@@ -26,19 +26,23 @@ class ThreadController extends AbstractController
     public function createCategory(Request $request, string $subCategId): Response
     {
 
+        if($this->getUser() == null){
+            return $this->redirectToRoute('app_login');
+        }
+
         $newThread = new Thread();
         $form = $this->createForm(ThreadType::class, $newThread);
         $form->handleRequest($request);
-
+        $subCateg = $this->subCategoryRepository->find($subCategId);
         if($form->isSubmitted() && $form->isValid()){
             $newThread->setCreatedAt(new \DateTime());
             $newThread->setUser($this->getUser());
-            $newThread->setSubCategory($this->subCategoryRepository->find($subCategId));
+            $newThread->setSubCategory($subCateg);
 
             $this->em->persist($newThread);
             $this->em->flush();
 
-            return $this->redirectToRoute('threads', ['id' => $subCategId]);
+            return $this->redirectToRoute('threads', ['name' => $subCateg->getName()]);
         }
 
         return $this->render('thread/create.html.twig', [
